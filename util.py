@@ -9,17 +9,32 @@ from collections import deque
 ## Problem 1
 
 def matrix_multiply(x, y):
-    pass
+    mm = []
+    for i in range(0,len(x)):
+        row = []
+        for j in range(0,len(y)):
+            sum = 0
+            for k in range(0,len(x[i])):
+                sum += x[i][k] * y[k][j]
+            row.append(sum)
+        mm.append(row)
+    return mm
+
+
 
 ## Problem 2, 3
 
 class MyQueue:
     def __init__(self):
-        pass
+        self.queue = []
     def push(self, val):
-        pass
+        self.queue.append(val)
     def pop(self):
-        pass
+        if len(self.queue) > 0:
+            val = self.queue[0]
+            self.queue = self.queue[1:]
+            return val
+        return None
     def __eq__(self, other):
         pass
     def __ne__(self, other):
@@ -29,11 +44,15 @@ class MyQueue:
 
 class MyStack:
     def __init__(self):
-        pass
+        self.stack = []
     def push(self, val):
-        pass
+        self.stack.append(val)
     def pop(self):
-        pass
+        if len(self.stack) > 0:
+            val = self.stack[len(self.stack) - 1]
+            self.stack = self.stack[:len(self.stack) - 1]
+            return val
+        return None
     def __eq__(self, other):
         pass
     def __ne__(self, other):
