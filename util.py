@@ -36,11 +36,11 @@ class MyQueue:
             return val
         return None
     def __eq__(self, other):
-        pass
+        return self.queue == other.queue
     def __ne__(self, other):
-        pass
+        return not self.__eq__(other)
     def __str__(self):
-        pass
+        return 'Front ' + str(self.queue)
 
 class MyStack:
     def __init__(self):
@@ -54,30 +54,41 @@ class MyStack:
             return val
         return None
     def __eq__(self, other):
-        pass
+        return self.stack == other.stack
     def __ne__(self, other):
-        pass
+        return not self.__eq__(other)
     def __str__(self):
-        pass
+        return 'Top ' + str([e for e in reversed(self.stack)])
 
 ## Problem 4
 
 def add_position_iter(lst, number_from=0):
-    pass
+    l = lst[:]
+    for i in range(0, len(lst)):
+        l[i] += i + number_from
+    return l
 
 def add_position_recur(lst, number_from=0):
-    pass
+    if lst == []:
+        return []
+    l = [lst[0] + number_from]
+    return l + add_position_recur(lst[1:], number_from=number_from + 1)
+
 
 def add_position_map(lst, number_from=0):
-    pass
+    return map(lambda x: x[0] + x[1] + number_from, enumerate(lst))
 
 ## Problem 5
 
 def remove_course(roster, student, course):
-    pass
+    return roster[student].discard(course)
 
 ## Problem 6
 
 def copy_remove_course(roster, student, course):
-    pass
+    new_roster = dict()
+    for e in roster.items():
+        new_roster[e[0]] = e[1].copy()
+    remove_course(new_roster, student, course)
+    return new_roster
 
